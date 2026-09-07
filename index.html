@@ -450,7 +450,7 @@ return w/100;
 
 function bandColor(pct){
 if(pct<50) return getComputedStyle(document.documentElement).getPropertyValue('--red').trim();
-if(pct<80) return getComputedStyle(document.documentElement).getPropertyValue('--amber').trim();
+if(pct<90) return getComputedStyle(document.documentElement).getPropertyValue('--amber').trim();
 return getComputedStyle(document.documentElement).getPropertyValue('--green').trim();
 }
 
@@ -463,7 +463,7 @@ gFill.style.width=g+'%';
 gFill.style.background=bandColor(g);
 document.getElementById('answeredN').textContent=ans;
 const tags=['Insuficient','Bàsic','Satisfactori','Excel·lent'];
-document.getElementById('levelLbl').textContent=tags[g<25?0:g<50?1:g<75?2:3];
+document.getElementById('levelLbl').textContent=tags[g<50?0:g<70?1:g<90?2:3];
 Object.keys(SECS).forEach(sid=>{
 const sc=secScore(sid);
 const pctEl=document.getElementById('sp-'+sid);
@@ -530,7 +530,7 @@ const rDesc=document.getElementById('rDesc');
 const box=document.querySelector('.result-box');
 const tags=['Insuficient','Bàsic','Satisfactori','Excel·lent'];
 const col=bandColor(g);
-const i=g<25?0:g<50?1:g<75?2:3;
+const i=g<50?0:g<70?1:g<90?2:3;
 rScore.textContent=Math.round(g)+'%';
 rScore.style.color=col;
 rLevel.textContent=ans?tags[i]:'Sense respostes';
@@ -545,7 +545,7 @@ const pendents=CRIT.length-ans;
 let txt='';
 if(g<50){
 txt=`Cal iniciar un pla de millora. L'àmbit més fluix és "${w.label.split(',')[0]}" (${Math.round(w.sc)}%). Revisa els criteris marcats en vermell més avall i prioritza'ls.`;
-}else if(g<80){
+}else if(g<90){
 txt=`El programa té una base sòlida, però l'autodiagnosi encara mostra marge de millora abans d'assolir un nivell "Excel·lent". L'àmbit amb més recorregut és "${w.label.split(',')[0]}" (${Math.round(w.sc)}%). Consulta els criteris pendents més avall.`;
 }else{
 txt='Felicitats! Segons aquesta autodiagnosi, el centre assoleix un nivell "Excel·lent" en la majoria d\'àmbits. Reviseu els criteris pendents (si n\'hi ha) i contacteu amb el PCEE per confirmar els passos per optar al Segell de Qualitat.';
